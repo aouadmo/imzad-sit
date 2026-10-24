@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<!--
+  Imzad Landing Page
+
+  This single page presents the value proposition of the Imzad mobile
+  application to Algerian shoppers and travellers. It follows the
+  information architecture outlined in the provided brief, supports
+  Arabic (RTL), French and English, and uses a minimal design with
+  blue accents reminiscent of the app’s UI. Use the language
+  selector in the top right to toggle between translations.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Imzad — Travelers meet real shopper requests</title>
+    <meta
+      name="description"
+      content="Marketplace connecting travelers and shoppers around real requests, clear prices, and direct chat. Android now; iOS coming soon."
+    />
+    <meta
+      name="keywords"
+      content="traveler delivery, shopper requests, micro‑importation, airport meet‑up, Algeria, MENA"
+    />
+
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+    <!-- Critical CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="images/home-screen.jpg" />
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <!-- iOS Waitlist Modal -->
+    <div id="waitlist-modal" class="waitlist-modal" role="dialog" aria-modal="true" aria-labelledby="waitlist-title" aria-describedby="waitlist-description" aria-hidden="true">
+      <div class="waitlist-modal-backdrop" aria-hidden="true"></div>
+      <div class="waitlist-modal-container">
+        <div class="waitlist-modal-content">
+          <button class="waitlist-modal-close" aria-label="Close waitlist modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+          <div class="waitlist-modal-header">
+            <h2 id="waitlist-title" class="waitlist-modal-title">
+              <span data-lang="en">🎉 Be First to Know!</span>
+              <span data-lang="fr">🎉 Soyez les premiers informés !</span>
+              <span data-lang="ar">🎉 كن أول من يعلم!</span>
+            </h2>
+            <p id="waitlist-description" class="waitlist-modal-subtitle">
+              <span data-lang="en">Join <span class="waitlist-counter">0</span> users waiting for iOS launch. Get notified first!</span>
+              <span data-lang="fr">Rejoignez <span class="waitlist-counter">0</span> utilisateurs en attente du lancement iOS.</span>
+              <span data-lang="ar">انضم إلى <span class="waitlist-counter">0</span> مستخدم ينتظرون إطلاق iOS!</span>
+            </p>
+          </div>
+
+          <form id="waitlist-form" class="waitlist-form" novalidate>
+            <div class="waitlist-contact-method">
+              <div class="waitlist-form-group" id="email-group">
+                <label for="waitlist-email" class="waitlist-form-label">
+                  <span data-lang="en">Email Address</span>
+                  <span data-lang="fr">Adresse e-mail</span>
+                  <span data-lang="ar">عنوان البريد الإلكتروني</span>
+                </label>
+                <input
+                  type="email"
+                  id="waitlist-email"
+                  name="email"
+                  class="waitlist-form-input"
+                  autocomplete="email"
+                  aria-describedby="email-error"
+                  placeholder="your@email.com"
+                >
+                <div class="waitlist-form-error" id="email-error" role="alert" aria-live="polite"></div>
+              </div>
+
+              <div class="waitlist-contact-divider">
+                <span class="waitlist-divider-text">
+                  <span data-lang="en">or</span>
+                  <span data-lang="fr">ou</span>
+                  <span data-lang="ar">أو</span>
+                </span>
+              </div>
+
+              <div class="waitlist-form-group" id="phone-group">
+                <label for="waitlist-phone" class="waitlist-form-label">
+                  <span data-lang="en">Phone Number (WhatsApp)</span>
+                  <span data-lang="fr">Numéro de téléphone (WhatsApp)</span>
+                  <span data-lang="ar">رقم الهاتف (واتساب)</span>
+                </label>
+                <input
+                  type="tel"
+                  id="waitlist-phone"
+                  name="phone"
+                  class="waitlist-form-input"
+                  autocomplete="tel"
+                  aria-describedby="phone-error"
+                  placeholder="+213 XXX XXX XXX"
+                >
+                <div class="waitlist-form-error" id="phone-error" role="alert" aria-live="polite"></div>
+              </div>
+
+              <button type="button" class="waitlist-contact-toggle" id="contact-toggle">
+                <span data-lang="en">💬 Prefer WhatsApp? Use phone number instead</span>
+                <span data-lang="fr">💬 Préférez WhatsApp ? Utilisez votre numéro</span>
+                <span data-lang="ar">💬 تفضل واتساب؟ استخدم رقم الهاتف</span>
+              </button>
+            </div>
+
+            <div class="waitlist-form-group">
+              <label for="waitlist-name" class="waitlist-form-label">
+                <span data-lang="en">First Name</span>
+                <span data-lang="fr">Prénom</span>
+                <span data-lang="ar">الاسم الأول</span>
+              </label>
+              <input
+                type="text"
+                id="waitlist-name"
+                name="firstName"
+                class="waitlist-form-input"
+                required
+                autocomplete="given-name"
+                aria-describedby="name-error"
+              >
+              <div class="waitlist-form-error" id="name-error" role="alert" aria-live="polite"></div>
+            </div>
+
+            <div class="waitlist-form-group">
+              <label for="waitlist-type" class="waitlist-form-label">
+                <span data-lang="en">I'm interested as a:</span>
+                <span data-lang="fr">Je suis intéressé(e) en tant que :</span>
+                <span data-lang="ar">أنا مهتم كـ:</span>
+              </label>
+              <select id="waitlist-type" name="userType" class="waitlist-form-select">
+                <option value="" data-label-en="Select an option" data-label-fr="Sélectionnez une option" data-label-ar="اختر خياراً">Select an option</option>
+                <option value="shopper" data-label-en="Shopper" data-label-fr="Acheteur" data-label-ar="مشتري">Shopper</option>
+                <option value="traveler" data-label-en="Traveler" data-label-fr="Voyageur" data-label-ar="مسافر">Traveler</option>
+                <option value="both" data-label-en="Both" data-label-fr="Les deux" data-label-ar="كلاهما">Both</option>
+              </select>
+            </div>
+
+            <button type="submit" class="waitlist-form-submit" id="waitlist-submit">
+              <span class="waitlist-submit-text">
+                <span data-lang="en">Join the Waitlist</span>
+                <span data-lang="fr">Rejoindre la liste d'attente</span>
+                <span data-lang="ar">انضم إلى قائمة الانتظار</span>
+              </span>
+              <span class="waitlist-submit-loading" aria-hidden="true">
+                <span data-lang="en">Joining...</span>
+                <span data-lang="fr">Inscription...</span>
+                <span data-lang="ar">جاري الانضمام...</span>
+              </span>
+            </button>
+
+            <div class="waitlist-form-privacy">
+              <span data-lang="en">🔒 We respect your privacy. Unsubscribe anytime.</span>
+              <div class="waitlist-form-group waitlist-consent-group">
+                <label class="waitlist-consent">
+                  <input type="checkbox" id="waitlist-consent" name="consent" required>
+                  <span data-lang="en">I agree to receive updates about the iOS launch and accept the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</span>
+                  <span data-lang="fr">J'accepte de recevoir des informations sur le lancement iOS et j'accepte la <a href="privacy.html" target="_blank" rel="noopener">Politique de confidentialité</a>.</span>
+                  <span data-lang="ar">أوافق على تلقي التحديثات حول إطلاق iOS وأوافق على <a href="privacy.html" target="_blank" rel="noopener">سياسة الخصوصية</a>.</span>
+                </label>
+                <div class="waitlist-form-error" id="consent-error" role="alert" aria-live="polite"></div>
+              </div>
+
+              <span data-lang="fr">🔒 Nous respectons votre vie privée. Désabonnement à tout moment.</span>
+              <span data-lang="ar">🔒 نحترم خصوصيتك. إلغاء الاشتراك في أي وقت.</span>
+            </div>
+          </form>
+
+          <div id="waitlist-success" class="waitlist-success">
+            <div class="waitlist-success-icon">🎉</div>
+            <h3 class="waitlist-success-title">
+              <span data-lang="en">You're in!</span>
+              <span data-lang="fr">C'est fait !</span>
+              <span data-lang="ar">تم!</span>
+            </h3>
+            <p class="waitlist-success-message">
+              <span data-lang="en">We'll notify you first when iOS launches. Check your email for confirmation!</span>
+              <span data-lang="fr">Nous vous préviendrons en premier lors du lancement iOS. Vérifiez votre e-mail !</span>
+              <span data-lang="ar">سنخبرك أولاً عند إطلاق iOS. تحقق من بريدك الإلكتروني!</span>
+            </p>
+            <div class="waitlist-success-social">
+              <p class="waitlist-success-share-text">
+                <span data-lang="en">Help us spread the word:</span>
+                <span data-lang="fr">Aidez-nous à faire passer le mot :</span>
+                <span data-lang="ar">ساعدنا في نشر الخبر:</span>
+              </p>
+              <div class="waitlist-success-share-buttons">
+                <button class="waitlist-share-btn" data-platform="twitter" aria-label="Share on Twitter">
+                  <span>🐦</span>
+                </button>
+                <button class="waitlist-share-btn" data-platform="facebook" aria-label="Share on Facebook">
+                  <span>📘</span>
+                </button>
+                <button class="waitlist-share-btn" data-platform="whatsapp" aria-label="Share on WhatsApp">
+                  <span>💬</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <nav class="language-switcher" role="navigation" aria-label="Language selection">
+        <button data-lang="ar" aria-label="Switch to Arabic language" aria-pressed="false">AR</button>
+        <button data-lang="fr" aria-label="Switch to French language" aria-pressed="false">FR</button>
+        <button data-lang="en" aria-label="Switch to English language" aria-pressed="false">EN</button>
+      </nav>
+
+      <h1>
+        <span data-lang="ar">إمزاد — اشترِ بذكاء… وسافر بربح</span>
+        <span data-lang="fr">Imzad — Achetez futé… Voyagez rentable</span>
+        <span data-lang="en">Imzad — Shop smarter… Travel profitably</span>
+      </h1>
+      <p>
+        <span data-lang="ar"
+          >منصة تربط بين المسافرين والمشترين، بطلبات حقيقية، أسعار واضحة، وتواصل
+          مباشر.</span
+        >
+        <span data-lang="fr"
+          >Mise en relation entre voyageurs et acheteurs : demandes réelles,
+          prix clairs, discussion directe.</span
+        >
+        <span data-lang="en"
+          >We match travelers and shoppers around real requests, clear pricing
+          and direct chat.</span
+        >
+      </p>
+      <div class="download-buttons">
+        <a href="#" id="android-link" aria-label="Download Imzad app for Android (coming soon)" role="button">
+          <span data-lang="ar">حمّل التطبيق على أندرويد</span>
+          <span data-lang="fr">Télécharger sur Android</span>
+          <span data-lang="en">Get it on Android</span>
+        </a>
+        <button class="ios-waitlist-button" aria-label="Join iOS waitlist" type="button">
+          <span data-lang="ar">قائمة انتظار iOS</span>
+          <span data-lang="fr">Liste d'attente iOS</span>
+          <span data-lang="en">Join iOS Waitlist</span>
+        </button>
+      </div>
+      <p class="note-small mt-6">
+        <span data-lang="ar"
+          >إمزاد وسيط ربط فقط — الاتفاقات والدفع بين المستخدمين مباشرة مع
+          احترام القوانين والجمارك.</span
+        >
+        <span data-lang="fr"
+          >Imzad est une plateforme d’intermédiation — accords et paiements
+          gérés entre utilisateurs, dans le respect de la loi et de la douane.</span
+        >
+        <span data-lang="en"
+          >Imzad is a matching platform only — users handle agreements and
+          payments, complying with local law and customs.</span
+        >
+      </p>
+    </header>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works">
+      <h2 class="text-center">
+        <span data-lang="ar">كيف تعمل؟</span>
+        <span data-lang="fr">Comment ça marche ?</span>
+        <span data-lang="en">How it works</span>
+      </h2>
+      <!-- Shopper / Traveler Tabs (one per language) -->
+      <!-- Arabic tabs -->
+      <div class="tabs" data-lang="ar" role="tablist" aria-label="How it works for different user types">
+        <button data-target="ar-shopper" role="tab" aria-controls="ar-shopper" aria-selected="false" tabindex="-1">المشتري</button>
+        <button data-target="ar-traveler" role="tab" aria-controls="ar-traveler" aria-selected="false" tabindex="-1">المسافر</button>
+      </div>
+      <div id="ar-shopper" class="tab-content" data-lang="ar" role="tabpanel" aria-labelledby="ar-shopper-tab" tabindex="0">
+        <ol>
+          <li>أنشئ طلبك (المقاس، السعر، مكان اللقاء).</li>
+          <li>استقبل عروضًا من مسافرين موثوقين.</li>
+          <li>اتفق وقابل المسافر لإتمام التسليم.</li>
+        </ol>
+      </div>
+      <div id="ar-traveler" class="tab-content" data-lang="ar" role="tabpanel" aria-labelledby="ar-traveler-tab" tabindex="0">
+        <ol>
+          <li>اختر مسارك.</li>
+          <li>قدّم عروضًا على الطلبات المناسبة.</li>
+          <li>قابل وسلّم واربح بشكل قانوني.</li>
+        </ol>
+      </div>
+      <!-- French tabs -->
+      <div class="tabs" data-lang="fr" role="tablist" aria-label="How it works for different user types">
+        <button data-target="fr-shopper" role="tab" aria-controls="fr-shopper" aria-selected="false" tabindex="-1">Acheteur</button>
+        <button data-target="fr-traveler" role="tab" aria-controls="fr-traveler" aria-selected="false" tabindex="-1">Voyageur</button>
+      </div>
+      <div id="fr-shopper" class="tab-content" data-lang="fr" role="tabpanel" aria-labelledby="fr-shopper-tab" tabindex="0">
+        <ol>
+          <li>Créez votre demande (taille, budget, point de rencontre).</li>
+          <li>Recevez des offres de voyageurs.</li>
+          <li>Concluez et rencontrez pour la remise.</li>
+        </ol>
+      </div>
+      <div id="fr-traveler" class="tab-content" data-lang="fr" role="tabpanel" aria-labelledby="fr-traveler-tab" tabindex="0">
+        <ol>
+          <li>Choisissez votre trajet.</li>
+          <li>Proposez des offres sur les demandes pertinentes.</li>
+          <li>Rencontrez et livrez — gains déclarés selon la loi.</li>
+        </ol>
+      </div>
+      <!-- English tabs -->
+      <div class="tabs" data-lang="en" role="tablist" aria-label="How it works for different user types">
+        <button data-target="en-shopper" role="tab" aria-controls="en-shopper" aria-selected="false" tabindex="-1">Shopper</button>
+        <button data-target="en-traveler" role="tab" aria-controls="en-traveler" aria-selected="false" tabindex="-1">Traveler</button>
+      </div>
+      <div id="en-shopper" class="tab-content" data-lang="en" role="tabpanel" aria-labelledby="en-shopper-tab" tabindex="0">
+        <ol>
+          <li>Create your request (size, budget, meeting point).</li>
+          <li>Receive offers from trusted travellers.</li>
+          <li>Agree & meet for hand‑off.</li>
+        </ol>
+      </div>
+      <div id="en-traveler" class="tab-content" data-lang="en" role="tabpanel" aria-labelledby="en-traveler-tab" tabindex="0">
+        <ol>
+          <li>Pick your route.</li>
+          <li>Make offers on suitable requests.</li>
+          <li>Meet & deliver — earn legally.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section id="features">
+      <h2 class="text-center">
+        <span data-lang="ar">ميزات رئيسية</span>
+        <span data-lang="fr">Fonctionnalités clés</span>
+        <span data-lang="en">Key features</span>
+      </h2>
+      <div class="features">
+        <div class="feature-item">
+          <h3>
+            <span data-lang="ar">طلبات حقيقية وأسعار واضحة</span>
+            <span data-lang="fr">Demandes réelles & prix clairs</span>
+            <span data-lang="en">Real requests & clear pricing</span>
+          </h3>
+          <p>
+            <span data-lang="ar">شاهد طلبات حقيقية منشورة من مشترين جزائريين مع ميزانية محددة.</span>
+            <span data-lang="fr">Consultez des demandes authentiques avec des budgets précis.</span>
+            <span data-lang="en">Browse authentic requests with transparent budgets.</span>
+          </p>
+        </div>
+        <div class="feature-item">
+          <h3>
+            <span data-lang="ar">مطابقة حسب المسار</span>
+            <span data-lang="fr">Correspondance par trajet</span>
+            <span data-lang="en">Route‑based matching</span>
+          </h3>
+          <p>
+            <span data-lang="ar">ربط الطلبات بالرحلات الفعلية للمسافرين.</span>
+            <span data-lang="fr">Nous associons les demandes aux itinéraires réels des voyageurs.</span>
+            <span data-lang="en">Requests are matched to travellers’ real travel routes.</span>
+          </p>
+        </div>
+        <div class="feature-item">
+          <h3>
+            <span data-lang="ar">مراسلة وإدارة العروض</span>
+            <span data-lang="fr">Messagerie & gestion des offres</span>
+            <span data-lang="en">In‑app chat & offer management</span>
+          </h3>
+          <p>
+            <span data-lang="ar">تواصل مباشرة مع الأطراف الأخرى وتابع عروضك بسهولة.</span>
+            <span data-lang="fr">Discutez directement et gérez vos offres en toute simplicité.</span>
+            <span data-lang="en">Chat directly and manage offers seamlessly.</span>
+          </p>
+        </div>
+        <div class="feature-item">
+          <h3>
+            <span data-lang="ar">تقييمات ومراجعات</span>
+            <span data-lang="fr">Notes & avis</span>
+            <span data-lang="en">Ratings & reviews</span>
+          </h3>
+          <p>
+            <span data-lang="ar">ابنِ سمعتك من خلال تقييمات المستخدمين وآرائهم.</span>
+            <span data-lang="fr">Construisez votre réputation grâce aux évaluations.</span>
+            <span data-lang="en">Build your reputation with user ratings and reviews.</span>
+          </p>
+        </div>
+        <div class="feature-item">
+          <h3>
+            <span data-lang="ar">واجهة متعددة اللغات</span>
+            <span data-lang="fr">Interface multilingue</span>
+            <span data-lang="en">Multilingual interface</span>
+          </h3>
+          <p>
+            <span data-lang="ar">التطبيق يدعم العربية، الفرنسية والإنجليزية.</span>
+            <span data-lang="fr">L’application supporte l’arabe, le français et l’anglais.</span>
+            <span data-lang="en">The app supports Arabic, French and English.</span>
+          </p>
+        </div>
+        <div class="feature-item">
+          <h3>
+            <span data-lang="ar">امتثال للقانون</span>
+            <span data-lang="fr">Conformité légale</span>
+            <span data-lang="en">Legal compliance</span>
+          </h3>
+          <p>
+            <span data-lang="ar">احترم قوانين الاستيراد المصغر والجمركة الجزائرية.</span>
+            <span data-lang="fr">Respectez la loi algérienne sur la micro‑importation et la douane.</span>
+            <span data-lang="en">Follow Algeria’s micro‑importation and customs rules.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust & Safety Section -->
+    <section id="trust">
+      <h2 class="text-center">
+        <span data-lang="ar">الثقة والسلامة</span>
+        <span data-lang="fr">Confiance & sécurité</span>
+        <span data-lang="en">Trust & Safety</span>
+      </h2>
+      <p class="max-w-900">
+        <span data-lang="ar"
+          >إمزاد هو وسيط فقط — لا يوفر خدمات شحن أو دفع. الاتفاقات والتسديدات تتم
+          بين المستخدمين مباشرة. تأكد من احترام القانون الجزائري للاتجار
+          المصغّر، وتجنب السلع المحظورة. التزم بمقابلات في أماكن عامة وكن حذرًا.
+          نذكرك بأنك مسؤول عن أي رسوم جمركية أو ضرائب.</span
+        >
+        <span data-lang="fr"
+          >Imzad est une plateforme d’intermédiation : nous ne proposons ni
+          transport ni paiement. Les accords et règlements sont conclus
+          directement entre utilisateurs. Respectez la loi algérienne de
+          micro‑importation et évitez les articles interdits. Organisez vos
+          rencontres dans des lieux publics et soyez vigilants. Vous êtes
+          responsables des droits de douane ou taxes éventuels.</span
+        >
+        <span data-lang="en"
+          >Imzad acts only as an intermediary — we do not provide shipping or
+          payment services. Agreements and settlements are arranged directly
+          between users. Please respect Algeria’s micro‑importation law and avoid
+          prohibited items. Meet in public places and exercise caution. You are
+          responsible for any customs duties or taxes.</span
+        >
+      </p>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots">
+      <h2 class="text-center">
+        <span data-lang="ar">صور من التطبيق</span>
+        <span data-lang="fr">Captures d’écran</span>
+        <span data-lang="en">Screenshots</span>
+      </h2>
+      <div class="screenshots">
+        <img src="images/home-screen.jpg" alt="Imzad app home screen showing main feed and navigation" loading="lazy" />
+        <img src="images/search-results.jpg" alt="Search results showing available trips and requests" loading="lazy" />
+        <img src="images/trip-form.jpg" alt="Create trip form for travelers to add new journey" loading="lazy" />
+        <img src="images/request-form.jpg" alt="Create request form for shoppers to post item needs" loading="lazy" />
+        <img src="images/trip-details.jpg" alt="Trip details page with traveler information and route" loading="lazy" />
+        <img src="images/chat.jpg" alt="In-app messaging between shoppers and travelers" loading="lazy" />
+        <img src="images/profile.jpg" alt="User profile with ratings and completed trips" loading="lazy" />
+        <img src="images/notifications.jpg" alt="Notifications center for updates and messages" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+      <h2 class="text-center">
+        <span data-lang="ar">الأسئلة الشائعة</span>
+        <span data-lang="fr">FAQ</span>
+        <span data-lang="en">FAQ</span>
+      </h2>
+      <!-- Each FAQ item contains copies for all languages -->
+      <!-- FAQ 1 -->
+      <div class="faq-item" data-lang="ar fr en">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-1-answer" id="faq-1-question">
+          <span data-lang="ar">هل توفر إمزاد الدفع أو الشحن؟</span>
+          <span data-lang="fr">Imzad fournit‑elle le paiement ou la livraison ?</span>
+          <span data-lang="en">Does Imzad provide payment or shipping?</span>
+        </button>
+        <div class="faq-answer" id="faq-1-answer" aria-labelledby="faq-1-question" role="region">
+          <p>
+            <span data-lang="ar">حاليًا لا. الاتفاق والدفع يتمان بين المستخدمين مباشرة.</span>
+            <span data-lang="fr">Pas pour le moment. Les accords et paiements sont conclus directement entre utilisateurs.</span>
+            <span data-lang="en">Not at this time. Agreements and payments are settled directly between users.</span>
+          </p>
+        </div>
+      </div>
+      <!-- FAQ 2 -->
+      <div class="faq-item" data-lang="ar fr en">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-2-answer" id="faq-2-question">
+          <span data-lang="ar">ما هي المواد الممنوعة؟</span>
+          <span data-lang="fr">Quels articles sont interdits ?</span>
+          <span data-lang="en">Which items are prohibited?</span>
+        </button>
+        <div class="faq-answer" id="faq-2-answer" aria-labelledby="faq-2-question" role="region">
+          <p>
+            <span data-lang="ar">أي مادة محظورة بموجب القانون أو الجمارك، مثل الأسلحة، المخدرات، البضائع المقلدة، الأدوية الموصوفة، أو كميات تتجاوز الحدود.</span>
+            <span data-lang="fr">Tout article prohibé par la loi ou la douane, notamment armes, drogues, contrefaçons, médicaments soumis à ordonnance ou quantités dépassant les seuils.</span>
+            <span data-lang="en">Any item banned by law or customs — weapons, drugs, counterfeit goods, prescription medicines or quantities exceeding legal limits.</span>
+          </p>
+        </div>
+      </div>
+      <!-- FAQ 3 -->
+      <div class="faq-item" data-lang="ar fr en">
+        <div class="faq-question">
+          <span data-lang="ar">هل إمزاد مسؤولة عن الخسائر؟</span>
+          <span data-lang="fr">Imzad est‑elle responsable des pertes ?</span>
+          <span data-lang="en">Is Imzad responsible for losses?</span>
+        </div>
+        <div class="faq-answer">
+          <p>
+            <span data-lang="ar">إمزاد وسيط ولا تتحمل المسؤولية عن الاتفاقات بين المستخدمين. كن دائمًا حذرًا وراجع من تتعامل معه.</span>
+            <span data-lang="fr">Imzad est un intermédiaire et n’est pas responsable des accords conclus entre utilisateurs. Restez vigilant et choisissez vos partenaires avec soin.</span>
+            <span data-lang="en">Imzad is an intermediary and not responsible for agreements between users. Always exercise caution and vet who you deal with.</span>
+          </p>
+        </div>
+      </div>
+      <!-- FAQ 4 -->
+      <div class="faq-item" data-lang="ar fr en">
+        <div class="faq-question">
+          <span data-lang="ar">كيف أبني سمعتي في التطبيق؟</span>
+          <span data-lang="fr">Comment bâtir ma réputation ?</span>
+          <span data-lang="en">How do I build my reputation?</span>
+        </div>
+        <div class="faq-answer">
+          <p>
+            <span data-lang="ar">التزم بالتواصل الواضح، التسليم في الوقت، واحترام الاتفاقات لتحصل على تقييمات جيدة.</span>
+            <span data-lang="fr">Communiquez clairement, respectez les délais de livraison et honorez vos accords pour obtenir de bonnes évaluations.</span>
+            <span data-lang="en">Communicate clearly, deliver on time and honour agreements to earn good ratings.</span>
+          </p>
+        </div>
+      </div>
+      <!-- FAQ 5 -->
+      <div class="faq-item" data-lang="ar fr en">
+        <div class="faq-question">
+          <span data-lang="ar">هل يمكنني استخدام المنصة بشكل مهني؟</span>
+          <span data-lang="fr">Puis‑je utiliser la plateforme de manière professionnelle ?</span>
+          <span data-lang="en">Can I use the platform professionally?</span>
+        </div>
+        <div class="faq-answer">
+          <p>
+            <span data-lang="ar">نعم، طالما تحترم القوانين والضرائب وحدود الاستيراد المصغر.</span>
+            <span data-lang="fr">Oui, tant que vous respectez la loi, les taxes et les limites de la micro‑importation.</span>
+            <span data-lang="en">Yes, as long as you respect the law, taxes and micro‑importation limits.</span>
+          </p>
+        </div>
+      </div>
+      <!-- FAQ 6 -->
+      <div class="faq-item" data-lang="ar fr en">
+        <div class="faq-question">
+          <span data-lang="ar">ماذا عن iOS؟</span>
+          <span data-lang="fr">Qu’en est‑il d’iOS ?</span>
+          <span data-lang="en">What about iOS?</span>
+        </div>
+        <div class="faq-answer">
+          <p>
+            <span data-lang="ar">نسخة iOS قيد التطوير وستتوفر قريبًا. التطبيق متاح حاليًا على أندرويد.</span>
+            <span data-lang="fr">La version iOS est en cours de développement et sera disponible bientôt. L’application est actuellement sur Android.</span>
+            <span data-lang="en">The iOS version is under development and will be available soon. The app is currently on Android.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download Section (repeated call to action) -->
+    <section id="download">
+      <h2 class="text-center">
+        <span data-lang="ar">احصل على إمزاد الآن</span>
+        <span data-lang="fr">Téléchargez Imzad maintenant</span>
+        <span data-lang="en">Get Imzad now</span>
+      </h2>
+      <div class="download-buttons">
+        <a href="#">
+          <span data-lang="ar">حمّل التطبيق على أندرويد</span>
+          <span data-lang="fr">Télécharger sur Android</span>
+          <span data-lang="en">Get it on Android</span>
+        </a>
+        <button class="ios-waitlist-button" aria-label="Join iOS waitlist" type="button">
+          <span data-lang="ar">قائمة انتظار iOS</span>
+          <span data-lang="fr">Liste d'attente iOS</span>
+          <span data-lang="en">Join iOS Waitlist</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>
+        <a href="terms.html">
+          <span data-lang="ar">شروط الاستخدام</span>
+          <span data-lang="fr">Conditions d’utilisation</span>
+          <span data-lang="en">Terms of Service</span>
+        </a>
+        |
+        <a href="privacy.html">
+          <span data-lang="ar">سياسة الخصوصية</span>
+          <span data-lang="fr">Politique de confidentialité</span>
+          <span data-lang="en">Privacy Policy</span>
+        </a>
+        |
+        <a href="contact.html">
+          <span data-lang="ar">اتصل بنا</span>
+          <span data-lang="fr">Contact</span>
+          <span data-lang="en">Contact</span>
+        </a>
+        |
+        <a href="delete-account.html">
+          <span data-lang="ar">حذف الحساب</span>
+          <span data-lang="fr">Supprimer le compte</span>
+          <span data-lang="en">Delete Account</span>
+        </a>
+      </div>
+      <div class="mt-2">
+        <!-- Wrap copyright text in LTR span to preserve word order in RTL mode -->
+        <span dir="ltr">© 2025 Imzad. All rights reserved.</span>
+      </div>
+    </footer>
+    <script src="analytics.js"></script>
+    <script src="script.js"></script>
+    <script src="waitlist.js"></script>
+  </body>
+</html>
